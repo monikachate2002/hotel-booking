@@ -239,7 +239,28 @@ main.mainmenu()
 
 
 
+class GenerateReceipt(Main):
+    time.sleep(2)
+    def generate(self, name, age, emailid, mobile_no, no_of_persons, room_type, total_bill):
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("Courier", size=12)
+        pdf.cell(200, 10, text="Hotel Booking Receipt", ln=True, align="C")
+        pdf.cell(200, 10, text="", ln=True, align="C") 
 
+        user_details = f"Name: {name}\nAge: {age}\nEmail ID: {emailid}\nMobile Number: {mobile_no}\nNumber Of Persons: {no_of_persons}\nRoom Type: {room_type} Total Bill : {total_bill}"
+        pdf.multi_cell(0, 10, text=user_details)
+
+        pdf.output("hotel_receipt.pdf")
+        print("Successfully Generated")
+        time.sleep(2)
+        print("\n\n😊 Thank you For Visiting us 😊".center(150))
+        self.con.say("Thank you For Visiting us")
+        self.con.runAndWait()
+
+# Instantiate Main class and show main menu
+main = Main()
+main.mainmenu()
 
 
 
